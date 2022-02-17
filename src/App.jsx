@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
-import { emptyCommand, errorCommand } from "./commands/index";
+import { emptyCommand, errorCommand, tdtCommandsCheck } from "./commands/index";
 
 function App() {
     // ESTADOS DOS INPUTS -------------------------------------------------------------------------
@@ -58,8 +58,13 @@ function App() {
                     ]);
                     setCodeInput("");
                 } else if (command === "tdt") {
-                    // Switch para verificar o segundo argumento.
-                    console.log("qual comando?");
+                    let ret = tdtCommandsCheck(username, codeInput);
+                    setArrDisplay([
+                        ...arrDisplay,
+                        ret.commandLine,
+                        ret.returnMsg,
+                    ]);
+                    setCodeInput("");
                 }
             }
         }
