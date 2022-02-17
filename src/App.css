@@ -61,6 +61,7 @@ main .terminal {
   padding: 15px;
   color: white;
   font-size: 15px;
+  overflow: auto;
 }
 
 main .terminal .commandLine {

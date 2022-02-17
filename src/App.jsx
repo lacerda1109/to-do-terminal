@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
+import { emptyCommand, errorCommand } from "./commands/index";
 
 function App() {
     // ESTADOS DOS INPUTS -------------------------------------------------------------------------
@@ -43,12 +44,24 @@ function App() {
     const [arrDisplay, setArrDisplay] = useState([]);
     function exec(e) {
         if (e.keyCode === 13) {
-            let empty = (
-                <p id="username">
-                    {username}: <span>~$</span>
-                </p>
-            );
-            setArrDisplay([...arrDisplay, empty]);
+            if (codeInput === "") {
+                let empty = emptyCommand(username);
+                setArrDisplay([...arrDisplay, empty]);
+            } else {
+                let command = codeInput.split(" ")[0];
+                if (command !== "tdt") {
+                    let ret = errorCommand(username, codeInput);
+                    setArrDisplay([
+                        ...arrDisplay,
+                        ret.commandLine,
+                        ret.errorMsg,
+                    ]);
+                    setCodeInput("");
+                } else if (command === "tdt") {
+                    // Switch para verificar o segundo argumento.
+                    console.log("qual comando?");
+                }
+            }
         }
     }
 
