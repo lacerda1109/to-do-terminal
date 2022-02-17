@@ -32,13 +32,15 @@ export function tdtCommandsCheck(username, codeInput) {
             {codeInput}
         </p>
     );
-    let returnMsg
+    let returnMsg;
 
-    let command = codeInput.split(" ")[1]
+    let command = codeInput.split(" ")[1];
     switch (command) {
         default:
-            returnMsg = <p>'{command}'' não é um comando tdt. Veja 'tdt help'.</p>
+            returnMsg = (
+                <p>'{command}' não é um comando tdt. Veja 'tdt help'.</p>
+            );
     }
 
-    return {commandLine, returnMsg}
+    return { commandLine, returnMsg };
 }

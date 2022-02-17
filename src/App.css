@@ -64,9 +64,14 @@ main .terminal {
   overflow: auto;
 }
 
+main .terminal p {
+  margin-bottom: 6px;
+}
+
 main .terminal .commandLine {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   gap: 10px;
 }
 
