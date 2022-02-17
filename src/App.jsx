@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 
 function App() {
+    // ESTADOS DOS INPUTS -------------------------------------------------------------------------
     const [nameInput, setNameInput] = useState("");
     function handleNameInput(e) {
         setNameInput(e.target.value);
@@ -10,6 +11,12 @@ function App() {
     function handleCodeInput(e) {
         setCodeInput(e.target.value);
     }
+
+    // REFERÊNCIA PARA INPUT DO TERMINAL ----------------------------------------------------------
+    const codeInputRef = useRef();
+    useEffect(() => {
+        codeInputRef.current.focus();
+    }, []);
 
     return (
         <div className="App">
@@ -27,12 +34,16 @@ function App() {
                 </div>
             </header>
             <main>
-                <div className="terminal">
+                <div
+                    className="terminal"
+                    onClick={() => codeInputRef.current.focus()}
+                >
                     <div className="commandLine">
                         <p>
                             Gabriel: <span>~$</span>
                         </p>
                         <input
+                            ref={codeInputRef}
                             type="text"
                             spellCheck="false"
                             value={codeInput}
