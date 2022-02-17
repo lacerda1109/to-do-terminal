@@ -17,24 +17,38 @@ function App() {
     useEffect(() => {
         codeInputRef.current.focus();
     }, []);
-    
+
     // TROCA DE USERNAME --------------------------------------------------------------------------
     const [username, setUsername] = useState("Guest");
     useEffect(() => {
-        let savedUsername = localStorage.getItem("username")
+        let savedUsername = localStorage.getItem("username");
         if (savedUsername === null) {
-            setUsername("Guest")
+            setUsername("Guest");
         } else {
-            setUsername(savedUsername)
+            setUsername(savedUsername);
         }
-    }, [])
+    }, []);
 
     function changeUsername(e) {
         if (e.keyCode === 13) {
             setUsername(nameInput);
-            localStorage.setItem("username", nameInput)
+            localStorage.setItem("username", nameInput);
             setNameInput("");
+            setArrDisplay([]);
             codeInputRef.current.focus();
+        }
+    }
+
+    // LÓGICA RESPOSTA DE COMANDOS ----------------------------------------------------------------
+    const [arrDisplay, setArrDisplay] = useState([]);
+    function exec(e) {
+        if (e.keyCode === 13) {
+            let empty = (
+                <p id="username">
+                    {username}: <span>~$</span>
+                </p>
+            );
+            setArrDisplay([...arrDisplay, empty]);
         }
     }
 
@@ -60,8 +74,11 @@ function App() {
                     className="terminal"
                     onClick={() => codeInputRef.current.focus()}
                 >
+                    {arrDisplay.map((el, i) => {
+                        return <div key={i}>{el}</div>;
+                    })}
                     <div className="commandLine">
-                        <p>
+                        <p id="username">
                             {username}: <span>~$</span>
                         </p>
                         <input
@@ -70,6 +87,7 @@ function App() {
                             spellCheck="false"
                             value={codeInput}
                             onChange={handleCodeInput}
+                            onKeyUp={(e) => exec(e)}
                         />
                     </div>
                 </div>

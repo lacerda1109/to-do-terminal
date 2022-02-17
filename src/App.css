@@ -69,7 +69,7 @@ main .terminal .commandLine {
   gap: 10px;
 }
 
-main .terminal .commandLine p span {
+#username span {
   color: #1cfc23;
 }
 
