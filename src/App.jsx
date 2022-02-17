@@ -17,6 +17,26 @@ function App() {
     useEffect(() => {
         codeInputRef.current.focus();
     }, []);
+    
+    // TROCA DE USERNAME --------------------------------------------------------------------------
+    const [username, setUsername] = useState("Guest");
+    useEffect(() => {
+        let savedUsername = localStorage.getItem("username")
+        if (savedUsername === null) {
+            setUsername("Guest")
+        } else {
+            setUsername(savedUsername)
+        }
+    }, [])
+
+    function changeUsername(e) {
+        if (e.keyCode === 13) {
+            setUsername(nameInput);
+            localStorage.setItem("username", nameInput)
+            setNameInput("");
+            codeInputRef.current.focus();
+        }
+    }
 
     return (
         <div className="App">
@@ -30,6 +50,7 @@ function App() {
                         placeholder="Insira seu nome"
                         value={nameInput}
                         onChange={handleNameInput}
+                        onKeyUp={(e) => changeUsername(e)}
                     />
                 </div>
             </header>
@@ -40,7 +61,7 @@ function App() {
                 >
                     <div className="commandLine">
                         <p>
-                            Gabriel: <span>~$</span>
+                            {username}: <span>~$</span>
                         </p>
                         <input
                             ref={codeInputRef}
