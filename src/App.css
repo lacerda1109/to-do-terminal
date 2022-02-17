@@ -36,3 +36,45 @@ header .headerContent input[type=text] {
 header .headerContent input[type=text]:focus {
   outline: 0;
 }
+
+/* ------------------------- */
+main {
+  height: calc(100% - 78px);
+  background-image: url(./images/bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 20px 0;
+}
+
+main .terminal {
+  max-width: 650px;
+  height: 100%;
+  background-color: rgb(19, 19, 19);
+  margin: 0 auto;
+  padding: 15px;
+  color: white;
+  font-size: 15px;
+}
+
+main .terminal .commandLine {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+main .terminal .commandLine p span {
+  color: #1cfc23;
+}
+
+main .terminal .commandLine input[type=text] {
+  flex-grow: 1;
+  font-size: 15px;
+  border: 0;
+  background-color: transparent;
+  color: white;
+}
+
+main .terminal .commandLine input[type=text]:focus {
+  outline: 0;
+}
