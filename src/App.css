@@ -38,6 +38,11 @@ header .headerContent input[type=text]:focus {
   outline: 0;
 }
 
+header .headerContent input[type=text]::selection {
+  background-color: #000;
+  color: #fff;
+}
+
 /* ------------------------- */
 main {
   height: calc(100% - 78px);

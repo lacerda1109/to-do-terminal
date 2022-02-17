@@ -48,6 +48,7 @@ function App() {
                     <input
                         type="text"
                         placeholder="Insira seu nome"
+                        spellCheck="false"
                         value={nameInput}
                         onChange={handleNameInput}
                         onKeyUp={(e) => changeUsername(e)}
