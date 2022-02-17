@@ -19,6 +19,7 @@ header .headerContent {
 
 header .headerContent .appLogo {
   font-size: 22px;
+  font-weight: 700;
 }
 
 header .headerContent .appLogo span {
