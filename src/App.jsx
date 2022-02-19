@@ -68,6 +68,10 @@ function App() {
                 }
             }
         }
+
+        if (e.keyCode === 77 && e.ctrlKey) {
+            setArrDisplay([]);
+        }
     }
 
     return (
