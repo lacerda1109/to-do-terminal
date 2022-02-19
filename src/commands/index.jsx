@@ -1,3 +1,5 @@
+import { about } from "./commands";
+
 export function emptyCommand(username) {
     return (
         <p id="username">
@@ -36,6 +38,9 @@ export function tdtCommandsCheck(username, codeInput) {
 
     let command = codeInput.split(" ")[1];
     switch (command) {
+        case "about":
+            returnMsg = about();
+            break;
         default:
             returnMsg = (
                 <p>'{command}' não é um comando tdt. Veja 'tdt help'.</p>
