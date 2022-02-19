@@ -88,10 +88,7 @@ function App() {
                 </div>
             </header>
             <main>
-                <div
-                    className="terminal"
-                    onClick={() => codeInputRef.current.focus()}
-                >
+                <div className="terminal">
                     {arrDisplay.map((el, i) => {
                         return <div key={i}>{el}</div>;
                     })}
