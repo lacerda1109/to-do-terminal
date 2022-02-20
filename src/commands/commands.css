@@ -1,0 +1,19 @@
+.messageSpace {
+    padding: 10px 0;
+}
+
+.helpTitle {
+    border-top: 1px solid white;
+    padding-top: 5px;
+    display: inline;
+}
+
+.helpTable {
+    margin-left: 15px;
+    width: 100%;
+}
+
+.helpRow td:nth-child(1) {
+    width: 100px;
+    vertical-align: top;
+}

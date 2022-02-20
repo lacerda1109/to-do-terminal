@@ -1,10 +1,12 @@
+import "./commands.css";
+
 export const about = () => (
-    <>
+    <div className="messageSpace">
         <p>
             Me chamo Gabriel, e desenvolvi esta aplicação para treinar meus
-            conhecimentos no campo da programação. O objetivo do app é manipular
-            uma lista de tarefas em forma de terminal, onde são necessários
-            comandos para adicionar, remover, listar as tarefas, entre outros.
+            conhecimentos em programação. O objetivo do app é manipular uma
+            lista de tarefas em forma de terminal, onde são necessários comandos
+            para adicionar, remover, listar as tarefas, entre outros.
         </p>
         <br />
         <p>
@@ -32,5 +34,64 @@ export const about = () => (
         </p>
         <br />
         <p>Para mais comandos digite: 'tdt help'.</p>
-    </>
+    </div>
+);
+
+export const help = () => (
+    <div className="messageSpace">
+        <p>Uso: tdt &lt;comando&gt; [&lt;argumento&gt;]</p>
+        <br />
+        <p className="helpTitle">
+            Estes são os comandos que podem ser utilizados para esta aplicação:
+        </p>
+        <table className="helpTable">
+            <tbody>
+                <tr className="helpRow">
+                    <td>add ["nome"]</td>
+                    <td>
+                        Adiciona uma tarefa, passando o nome entre aspas como
+                        argumento.
+                    </td>
+                </tr>
+                <tr className="helpRow">
+                    <td>remove [id]</td>
+                    <td>
+                        Remove uma tarefa. É necessário passar como argumento o
+                        id da tarefa.
+                    </td>
+                </tr>
+                <tr className="helpRow">
+                    <td>list</td>
+                    <td>Lista as tarefas existentes e seus estados.</td>
+                </tr>
+                <tr className="helpRow">
+                    <td>mark [id]</td>
+                    <td>Marca uma tarefa como concluída.</td>
+                </tr>
+                <tr className="helpRow">
+                    <td>unmark [id]</td>
+                    <td>Desmarca uma tarefa como concluída.</td>
+                </tr>
+                <tr className="helpRow">
+                    <td>about</td>
+                    <td>Mostra um texto falando sobre o projeto.</td>
+                </tr>
+                <tr className="helpRow">
+                    <td>wipe</td>
+                    <td>
+                        Remove automaticamente todas as tarefas marcadas como
+                        concluídas.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <p className="helpTitle">Estes são os atalhos de teclado:</p>
+        <table className="helpTable">
+            <tr className="helpRow">
+                <td>ctrl + m</td>
+                <td>Limpa o terminal.</td>
+            </tr>
+        </table>
+    </div>
 );

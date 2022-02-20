@@ -1,4 +1,4 @@
-import { about } from "./commands";
+import { about, help } from "./commands";
 
 export function emptyCommand(username) {
     return (
@@ -40,6 +40,9 @@ export function tdtCommandsCheck(username, codeInput) {
     switch (command) {
         case "about":
             returnMsg = about();
+            break;
+        case "help":
+            returnMsg = help();
             break;
         default:
             returnMsg = (
