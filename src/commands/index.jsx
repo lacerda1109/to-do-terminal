@@ -20,7 +20,7 @@ export function errorCommand(username, codeInput) {
         let errorMsg = (
             <p>
                 '{command}' não é reconhecido como um comando interno. Tente
-                'tdt'.
+                'tdt help'.
             </p>
         );
         return { commandLine, errorMsg };
@@ -45,9 +45,7 @@ export function tdtCommandsCheck(username, codeInput) {
             returnMsg = help();
             break;
         default:
-            returnMsg = (
-                <p>'{command}' não é um comando tdt. Veja 'tdt help'.</p>
-            );
+            returnMsg = help();
     }
 
     return { commandLine, returnMsg };

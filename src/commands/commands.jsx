@@ -47,6 +47,10 @@ export const help = () => (
         <table className="helpTable">
             <tbody>
                 <tr className="helpRow">
+                    <td>help</td>
+                    <td>Mostra esta mensagem de ajuda.</td>
+                </tr>
+                <tr className="helpRow">
                     <td>add ["nome"]</td>
                     <td>
                         Adiciona uma tarefa, passando o nome entre aspas como
