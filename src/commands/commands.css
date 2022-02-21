@@ -1,7 +1,9 @@
+/* ESPAÇAMENTO */
 .messageSpace {
     padding: 10px 0;
 }
 
+/* HELP */
 .helpTitle {
     border-top: 1px solid white;
     padding-top: 5px;

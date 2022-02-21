@@ -99,3 +99,56 @@ export const help = () => (
         </table>
     </div>
 );
+
+function validateName(value) {
+    if (
+        value !== "" &&
+        value !== '""' &&
+        value !== '"' &&
+        value !== "''" &&
+        value !== "'"
+    )
+        return true;
+    else return false;
+}
+
+export const add = (codeInput) => {
+    let toDoName = codeInput.split(" ").slice(2).join(" ");
+    let createdID;
+    if (validateName(toDoName)) {
+        let todos = JSON.parse(localStorage.getItem("todos"));
+
+        if (todos) {
+            let newId = todos.todos[todos.todos.length - 1].id;
+            localStorage.setItem(
+                "todos",
+                JSON.stringify({
+                    totalCount: todos.todos.length + 1,
+                    todos: [
+                        ...todos.todos,
+                        { id: newId + 1, name: toDoName, status: false },
+                    ],
+                })
+            );
+            createdID = newId + 1;
+        } else {
+            localStorage.setItem(
+                "todos",
+                JSON.stringify({
+                    totalCount: 1,
+                    todos: [{ id: 1, name: toDoName, status: false }],
+                })
+            );
+            createdID = 1;
+        }
+
+        return (
+            <p>
+                A tarefa <span className="green">{toDoName}</span> foi
+                adicionada com o ID <span className="green">{createdID}</span>.
+            </p>
+        );
+    } else {
+        return <p>Você deve adicionar um nome à sua tarefa.</p>;
+    }
+};
