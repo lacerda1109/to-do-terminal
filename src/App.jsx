@@ -13,10 +13,13 @@ function App() {
         setCodeInput(e.target.value);
     }
     
-    // REFERÊNCIA PARA INPUT DO TERMINAL ----------------------------------------------------------
+    // INICIALIZAÇÕES DO APP ----------------------------------------------------------------------
     const codeInputRef = useRef();
     useEffect(() => {
-        localStorage.setItem('todos', JSON.stringify({totalCount: 0, todos: []}))
+        let todos = localStorage.getItem("todos")
+        if (!todos) {
+            localStorage.setItem('todos', JSON.stringify({totalCount: 0, todos: []}))
+        }
         codeInputRef.current.focus();
     }, []);
 
