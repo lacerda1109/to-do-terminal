@@ -118,7 +118,7 @@ export const add = (codeInput) => {
     if (validateName(toDoName)) {
         let todos = JSON.parse(localStorage.getItem("todos"));
 
-        if (todos) {
+        if (todos.todos.length !== 0) {
             let newId = todos.todos[todos.todos.length - 1].id;
             localStorage.setItem(
                 "todos",
@@ -144,7 +144,7 @@ export const add = (codeInput) => {
 
         return (
             <p>
-                A tarefa <span className="green">{toDoName}</span> foi
+                A tarefa <span className="green">"{toDoName}"</span> foi
                 adicionada com o ID <span className="green">{createdID}</span>.
             </p>
         );

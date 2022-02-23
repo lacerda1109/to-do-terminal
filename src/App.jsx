@@ -12,10 +12,11 @@ function App() {
     function handleCodeInput(e) {
         setCodeInput(e.target.value);
     }
-
+    
     // REFERÊNCIA PARA INPUT DO TERMINAL ----------------------------------------------------------
     const codeInputRef = useRef();
     useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify({totalCount: 0, todos: []}))
         codeInputRef.current.focus();
     }, []);
 
