@@ -1,4 +1,4 @@
-import { about, help, add } from "./commands";
+import { about, help, add, remove, notTdtCommand } from "./commands";
 
 export function emptyCommand(username) {
     return (
@@ -20,7 +20,7 @@ export function errorCommand(username, codeInput) {
         let errorMsg = (
             <p>
                 '{command}' não é reconhecido como um comando interno. Tente
-                'tdt help'.
+                'tdt'.
             </p>
         );
         return { commandLine, errorMsg };
@@ -38,6 +38,12 @@ export function tdtCommandsCheck(username, codeInput) {
 
     let command = codeInput.split(" ")[1];
     switch (command) {
+        case undefined:
+            returnMsg = help();
+            break;
+        case "":
+            returnMsg = help();
+            break;
         case "about":
             returnMsg = about();
             break;
@@ -47,8 +53,11 @@ export function tdtCommandsCheck(username, codeInput) {
         case "add":
             returnMsg = add(codeInput);
             break;
+        case "remove":
+            returnMsg = remove(codeInput);
+            break;
         default:
-            returnMsg = help();
+            returnMsg = notTdtCommand(command);
     }
 
     return { commandLine, returnMsg };

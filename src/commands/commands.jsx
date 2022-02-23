@@ -1,5 +1,9 @@
 import "./commands.css";
 
+export const notTdtCommand = (command) => (
+    <p>'{command}' não é um comando tdt. Tente 'tdt help'.</p>
+)
+
 export const about = () => (
     <div className="messageSpace">
         <p>
@@ -164,3 +168,7 @@ export const add = (codeInput) => {
         return <p>Você deve adicionar um nome à sua tarefa.</p>;
     }
 };
+
+export const remove = (codeInput) => {
+    console.log(codeInput)
+}
