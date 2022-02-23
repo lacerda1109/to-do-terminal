@@ -178,19 +178,26 @@ export const remove = (codeInput) => {
         // Se o ID não for passado ou for equivalente a uma string vazia:
         return <p>Você deve passar um ID.</p>;
     } else {
-        // verifica se o ID existe
+        // Verifica se o ID existe
         let todos = JSON.parse(localStorage.getItem("todos"));
-        let checkedId = todos.todos.findIndex((el) => el.id === Number(providedId)); // Índex da tarefa com o ID correspondente
-        if (checkedId !== -1) {
+        let toDoIndex = todos.todos.findIndex(
+            (el) => el.id === Number(providedId)
+        ); // Índex da tarefa com o ID correspondente
+        if (toDoIndex !== -1) {
             // ID passado existe
-            // Remover tarefa do localStorage
+            let toDoName = todos.todos[toDoIndex].name
+            todos.todos.splice(toDoIndex, 1) // Remove tarefa e atualiza o localStorage abaixo
+            localStorage.setItem("todos", JSON.stringify({
+                totalCount: todos.todos.length,
+                todos: todos.todos
+            }));
             return (
                 <p>
                     A tarefa{" "}
                     <span className="green">
-                        "{todos.todos[checkedId].name}"
+                        "{toDoName}"
                     </span>{" "}
-                    de ID <span className="green">"{providedId}"</span> foi
+                    de ID <span className="green">{providedId}</span> foi
                     removida.
                 </p>
             );
@@ -198,8 +205,9 @@ export const remove = (codeInput) => {
             // ID passado nao existe
             return (
                 <p>
-                    O ID <span className="green">"{providedId}"</span> não existe.
-                    Digite 'tdt list' para conferir as tarefas existentes.
+                    O ID <span className="green">"{providedId}"</span> não
+                    existe. Digite 'tdt list' para conferir as tarefas
+                    existentes.
                 </p>
             );
         }
