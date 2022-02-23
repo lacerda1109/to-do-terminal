@@ -2,7 +2,7 @@ import "./commands.css";
 
 export const notTdtCommand = (command) => (
     <p>'{command}' não é um comando tdt. Tente 'tdt help'.</p>
-)
+);
 
 export const about = () => (
     <div className="messageSpace">
@@ -170,5 +170,38 @@ export const add = (codeInput) => {
 };
 
 export const remove = (codeInput) => {
-    console.log(codeInput)
-}
+    let commandLength = codeInput.split(" ").length;
+    let providedId = codeInput.split(" ")[2];
+    if (commandLength > 3) {
+        return <p>O ID passado é inválido.</p>;
+    } else if (providedId === undefined || providedId === "") {
+        // Se o ID não for passado ou for equivalente a uma string vazia:
+        return <p>Você deve passar um ID.</p>;
+    } else {
+        // verifica se o ID existe
+        let todos = JSON.parse(localStorage.getItem("todos"));
+        let checkedId = todos.todos.findIndex((el) => el.id === Number(providedId)); // Índex da tarefa com o ID correspondente
+        if (checkedId !== -1) {
+            // ID passado existe
+            // Remover tarefa do localStorage
+            return (
+                <p>
+                    A tarefa{" "}
+                    <span className="green">
+                        "{todos.todos[checkedId].name}"
+                    </span>{" "}
+                    de ID <span className="green">"{providedId}"</span> foi
+                    removida.
+                </p>
+            );
+        } else {
+            // ID passado nao existe
+            return (
+                <p>
+                    O ID <span className="green">"{providedId}"</span> não existe.
+                    Digite 'tdt list' para conferir as tarefas existentes.
+                </p>
+            );
+        }
+    }
+};
