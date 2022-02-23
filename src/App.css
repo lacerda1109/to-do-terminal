@@ -62,6 +62,7 @@ main .terminal {
   color: white;
   font-size: 15px;
   overflow: auto;
+  word-break: break-word;
 }
 
 main .terminal p {

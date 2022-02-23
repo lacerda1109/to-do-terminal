@@ -100,6 +100,17 @@ export const help = () => (
     </div>
 );
 
+function validateToDos() {
+    let todos = JSON.parse(localStorage.getItem("todos"));
+    if (!todos) {
+        localStorage.setItem(
+            "todos",
+            JSON.stringify({ totalCount: 0, todos: [] })
+        );
+    }
+    return todos;
+}
+
 function validateName(value) {
     if (
         value !== "" &&
@@ -116,6 +127,7 @@ export const add = (codeInput) => {
     let toDoName = codeInput.split(" ").slice(2).join(" ");
     let createdID;
     if (validateName(toDoName)) {
+        validateToDos();
         let todos = JSON.parse(localStorage.getItem("todos"));
 
         if (todos.todos.length !== 0) {
