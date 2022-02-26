@@ -55,10 +55,9 @@ export const help = () => (
                     <td>Mostra esta mensagem de ajuda.</td>
                 </tr>
                 <tr className="helpRow">
-                    <td>add ["nome"]</td>
+                    <td>add [nome]</td>
                     <td>
-                        Adiciona uma tarefa, passando o nome entre aspas como
-                        argumento.
+                        Adiciona uma tarefa, passando o nome como argumento.
                     </td>
                 </tr>
                 <tr className="helpRow">
@@ -185,20 +184,19 @@ export const remove = (codeInput) => {
         ); // Índex da tarefa com o ID correspondente
         if (toDoIndex !== -1) {
             // ID passado existe
-            let toDoName = todos.todos[toDoIndex].name
-            todos.todos.splice(toDoIndex, 1) // Remove tarefa e atualiza o localStorage abaixo
-            localStorage.setItem("todos", JSON.stringify({
-                totalCount: todos.todos.length,
-                todos: todos.todos
-            }));
+            let toDoName = todos.todos[toDoIndex].name;
+            todos.todos.splice(toDoIndex, 1); // Remove tarefa e atualiza o localStorage abaixo
+            localStorage.setItem(
+                "todos",
+                JSON.stringify({
+                    totalCount: todos.todos.length,
+                    todos: todos.todos,
+                })
+            );
             return (
                 <p>
-                    A tarefa{" "}
-                    <span className="green">
-                        "{toDoName}"
-                    </span>{" "}
-                    de ID <span className="green">{providedId}</span> foi
-                    removida.
+                    A tarefa <span className="green">"{toDoName}"</span> de ID{" "}
+                    <span className="green">{providedId}</span> foi removida.
                 </p>
             );
         } else {
