@@ -211,3 +211,52 @@ export const remove = (codeInput) => {
         }
     }
 };
+
+export const mark = (codeInput) => {
+    let commandLength = codeInput.split(" ").length;
+    let providedId = codeInput.split(" ")[2];
+    if (commandLength > 3) {
+        return <p>O ID passado é inválido.</p>;
+    } else if (providedId === undefined || providedId === "") {
+        // Se o ID não for passado ou for equivalente a uma string vazia:
+        return <p>Você deve passar um ID.</p>;
+    } else {
+        // Verifica se o ID existe
+        let todos = JSON.parse(localStorage.getItem("todos"));
+        let toDoIndex = todos.todos.findIndex(
+            (el) => el.id === Number(providedId)
+        ); // Índex da tarefa com o ID correspondente
+        if (toDoIndex !== -1) {
+            // ID passado existe
+            if (todos.todos[toDoIndex].status !== true) { // Se não estiver concluída, marcar
+                let toDoName = todos.todos[toDoIndex].name;
+                todos.todos[toDoIndex].status = true;
+                localStorage.setItem(
+                    "todos",
+                    JSON.stringify({
+                        totalCount: todos.totalCount,
+                        todos: [...todos.todos],
+                    })
+                );
+                return (
+                    <p>
+                        A tarefa <span className="green">"{toDoName}"</span> de
+                        ID <span className="green">{providedId}</span> foi
+                        marcada como concluída.
+                    </p>
+                );
+            } else { // Se estiver concluída, retornar a seguinte mensagem
+                return <p>A tarefa já está marcada como concluída.</p>;
+            }
+        } else {
+            // ID passado nao existe
+            return (
+                <p>
+                    O ID <span className="green">"{providedId}"</span> não
+                    existe. Digite 'tdt list' para conferir as tarefas
+                    existentes.
+                </p>
+            );
+        }
+    }
+};
