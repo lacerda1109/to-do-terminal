@@ -1,4 +1,4 @@
-import { about, help, add, remove, notTdtCommand, mark } from "./commands";
+import { about, help, add, remove, notTdtCommand, mark, unmark } from "./commands";
 
 export function emptyCommand(username) {
     return (
@@ -58,6 +58,9 @@ export function tdtCommandsCheck(username, codeInput) {
             break;
         case "mark":
             returnMsg = mark(codeInput);
+            break;
+        case "unmark":
+            returnMsg = unmark(codeInput);
             break;
         default:
             returnMsg = notTdtCommand(command);
