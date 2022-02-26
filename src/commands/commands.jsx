@@ -45,7 +45,7 @@ export const help = () => (
     <div className="messageSpace">
         <p>Uso: tdt &lt;comando&gt; [&lt;argumento&gt;]</p>
         <br />
-        <p className="helpTitle">
+        <p className="title">
             Estes são os comandos que podem ser utilizados para esta aplicação:
         </p>
         <table className="helpTable">
@@ -93,7 +93,7 @@ export const help = () => (
             </tbody>
         </table>
         <br />
-        <p className="helpTitle">Estes são os atalhos de teclado:</p>
+        <p className="title">Estes são os atalhos de teclado:</p>
         <table className="helpTable">
             <tr className="helpRow">
                 <td>ctrl + m</td>
@@ -228,7 +228,8 @@ export const mark = (codeInput) => {
         ); // Índex da tarefa com o ID correspondente
         if (toDoIndex !== -1) {
             // ID passado existe
-            if (todos.todos[toDoIndex].status !== true) { // Se não estiver concluída, marcar
+            if (todos.todos[toDoIndex].status !== true) {
+                // Se não estiver concluída, marcar
                 let toDoName = todos.todos[toDoIndex].name;
                 todos.todos[toDoIndex].status = true;
                 localStorage.setItem(
@@ -245,7 +246,8 @@ export const mark = (codeInput) => {
                         marcada como concluída.
                     </p>
                 );
-            } else { // Se estiver concluída, retornar a seguinte mensagem
+            } else {
+                // Se estiver concluída, retornar a seguinte mensagem
                 return <p>A tarefa já está marcada como concluída.</p>;
             }
         } else {
@@ -277,7 +279,8 @@ export const unmark = (codeInput) => {
         ); // Índex da tarefa com o ID correspondente
         if (toDoIndex !== -1) {
             // ID passado existe
-            if (todos.todos[toDoIndex].status !== false) { // Se não estiver concluída, marcar
+            if (todos.todos[toDoIndex].status !== false) {
+                // Se não estiver concluída, marcar
                 let toDoName = todos.todos[toDoIndex].name;
                 todos.todos[toDoIndex].status = false;
                 localStorage.setItem(
@@ -294,7 +297,8 @@ export const unmark = (codeInput) => {
                         desmarcada como concluída.
                     </p>
                 );
-            } else { // Se estiver concluída, retornar a seguinte mensagem
+            } else {
+                // Se estiver concluída, retornar a seguinte mensagem
                 return <p>A tarefa não está marcada como concluída.</p>;
             }
         } else {
@@ -307,5 +311,71 @@ export const unmark = (codeInput) => {
                 </p>
             );
         }
+    }
+};
+
+export const list = (codeInput) => {
+    let commandLength = codeInput.split(" ").length;
+    let todos = JSON.parse(localStorage.getItem("todos"));
+    if (commandLength > 2) {
+        return <p>O comando list deve ser passado sem mais argumentos.</p>;
+    } else if (todos.todos.length === 0) {
+        return (
+            <>
+                <p>Nenhuma tarefa encontrada.</p>
+                <p>Digite 'tdt add [nome da tarefa]' para começar.</p>
+            </>
+        );
+    } else {
+        let toDos = todos.todos;
+        return (
+            <div className="messageSpace">
+                <div className="listHeader">
+                    <p>Total de tarefas: {toDos.length}</p>
+                    <p>
+                        A fazer:{" "}
+                        <span className="red">
+                            {toDos.filter((el) => el.status === false).length}
+                        </span>
+                    </p>
+                    <p>
+                        Concluídas:{" "}
+                        <span className="green">
+                            {toDos.filter((el) => el.status === true).length}
+                        </span>
+                    </p>
+                </div>
+                <p>
+                    (Use 'tdt wipe' para remover as concluídas ou 'tdt help'
+                    para mais comandos.)
+                </p>
+                <table className="listTable">
+                    <tbody>
+                        <tr>
+                            <td>ID</td>
+                            <td>NOME</td>
+                            <td>STATUS</td>
+                        </tr>
+                        {toDos.map((el, i) => {
+                            return (
+                                <tr>
+                                    <td>{el.id}</td>
+                                    <td>{el.name}</td>
+                                    <td>
+                                        {el.status ? (
+                                            <span className="green">
+                                                Concluída
+                                            </span>
+                                        ) : (
+                                            <span className="red">A fazer</span>
+                                        )}
+                                    </td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        );
     }
 };

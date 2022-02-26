@@ -3,13 +3,13 @@
     padding: 10px 0;
 }
 
-/* HELP */
-.helpTitle {
+.title {
     border-top: 1px solid white;
     padding-top: 5px;
     display: inline;
 }
 
+/* HELP */
 .helpTable {
     margin-left: 15px;
     width: 100%;
@@ -18,4 +18,36 @@
 .helpRow td:nth-child(1) {
     width: 100px;
     vertical-align: top;
+}
+
+/* LIST */
+.listHeader {
+    display: flex;
+    gap: 10px;
+}
+
+.listTable {
+    border-collapse: collapse;
+    margin: auto;
+    text-align: center;
+    width: 90%;
+}
+
+.listTable td {
+    border: 1px solid #fff;
+    padding: 5px 10px;
+    vertical-align: top;
+}
+
+.listTable td:nth-child(1) {
+    width: 36px;
+}
+
+.listTable td:nth-child(2) {
+    text-align: left;
+    max-width: 78%;
+}
+
+.listTable td:nth-child(3) {
+    width: 95px;
 }

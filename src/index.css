@@ -15,6 +15,10 @@ a, .green {
   color: #1cfc23;
 }
 
+.red {
+  color: #ec3535;
+}
+
 ::selection {
   background-color: #fff;
   color: #000;
