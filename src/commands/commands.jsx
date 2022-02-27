@@ -358,7 +358,7 @@ export const list = (codeInput) => {
                         </tr>
                         {toDos.map((el, i) => {
                             return (
-                                <tr>
+                                <tr key={i}>
                                     <td>{el.id}</td>
                                     <td>{el.name}</td>
                                     <td>
