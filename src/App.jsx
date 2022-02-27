@@ -12,13 +12,16 @@ function App() {
     function handleCodeInput(e) {
         setCodeInput(e.target.value);
     }
-    
+
     // INICIALIZAÇÕES DO APP ----------------------------------------------------------------------
     const codeInputRef = useRef();
     useEffect(() => {
-        let todos = localStorage.getItem("todos")
+        let todos = localStorage.getItem("todos");
         if (!todos) {
-            localStorage.setItem('todos', JSON.stringify({totalCount: 0, todos: []}))
+            localStorage.setItem(
+                "todos",
+                JSON.stringify({ totalCount: 0, todos: [] })
+            );
         }
         codeInputRef.current.focus();
     }, []);
@@ -46,12 +49,17 @@ function App() {
 
     // LÓGICA RESPOSTA DE COMANDOS ----------------------------------------------------------------
     const [arrDisplay, setArrDisplay] = useState([]);
+    const [arrCommands, setArrCommands] = useState([]);
+    const [commandIndex, setCommandIndex] = useState(null);
     function exec(e) {
+        // EXECUÇÃO DE FUNÇÕES COM O EVENTO DO ENTER NO TERMINAL
         if (e.keyCode === 13) {
             if (codeInput === "") {
                 let empty = emptyCommand(username);
                 setArrDisplay([...arrDisplay, empty]);
             } else {
+                setArrCommands([...arrCommands, codeInput]);
+                setCommandIndex(null);
                 let command = codeInput.split(" ")[0];
                 if (command !== "tdt") {
                     let ret = errorCommand(username, codeInput);
@@ -73,10 +81,42 @@ function App() {
             }
         }
 
+        // LIMPEZA DO DISPLAY DO TERMINAL AO PRESSIONAR CTRL + M
         if (e.keyCode === 77 && e.ctrlKey) {
             setArrDisplay([]);
         }
+
+        // FUNÇÕES DE USAR ÚLTIMOS CÓDIGOS DIGITADOS COM AS SETAS DO TECLADO
+        if (e.keyCode === 38) {
+            if (commandIndex === 0) {
+                return;
+            }
+            if (commandIndex === null) {
+                setCommandIndex(arrCommands.length - 1);
+            } else {
+                setCommandIndex(commandIndex - 1);
+            }
+        }
+
+        if (e.keyCode === 40) {
+            if (commandIndex === null) {
+                return;
+            }
+            if (commandIndex === arrCommands.length - 1) {
+                setCommandIndex(null);
+                setCodeInput("");
+                return;
+            }
+            setCommandIndex(commandIndex + 1);
+        }
     }
+
+    // Altera o texto do terminal para códigos escritos anteriormente
+    useEffect(() => {
+        if (commandIndex !== null) {
+            setCodeInput(arrCommands[commandIndex]);
+        }
+    }, [commandIndex]);
 
     return (
         <div className="App">
