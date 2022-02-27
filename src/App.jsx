@@ -14,6 +14,7 @@ function App() {
     }
 
     // INICIALIZAÇÕES DO APP ----------------------------------------------------------------------
+    const terminal = useRef();
     const codeInputRef = useRef();
     useEffect(() => {
         let todos = localStorage.getItem("todos");
@@ -79,6 +80,12 @@ function App() {
                     setCodeInput("");
                 }
             }
+
+            // Scroll para o fim do terminal
+            setInterval(() => {
+                let terminalHeight = terminal.current.scrollHeight
+                terminal.current.scrollTo(0, terminalHeight)
+            }, 50)
         }
 
         // LIMPEZA DO DISPLAY DO TERMINAL AO PRESSIONAR CTRL + M
@@ -136,7 +143,7 @@ function App() {
                 </div>
             </header>
             <main>
-                <div className="terminal">
+                <div className="terminal" ref={terminal}>
                     {arrDisplay.map((el, i) => {
                         return <div key={i}>{el}</div>;
                     })}
