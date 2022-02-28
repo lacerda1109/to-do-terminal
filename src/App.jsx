@@ -82,10 +82,10 @@ function App() {
             }
 
             // Scroll para o fim do terminal
-            setInterval(() => {
-                let terminalHeight = terminal.current.scrollHeight
-                terminal.current.scrollTo(0, terminalHeight)
-            }, 50)
+            // setInterval(() => {
+            //     let terminalHeight = terminal.current.scrollHeight
+            //     terminal.current.scrollTo(0, terminalHeight)
+            // }, 50)
         }
 
         // LIMPEZA DO DISPLAY DO TERMINAL AO PRESSIONAR CTRL + M

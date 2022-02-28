@@ -91,3 +91,18 @@ main .terminal .commandLine input[type=text] {
 main .terminal .commandLine input[type=text]:focus {
   outline: 0;
 }
+
+/* SCROLLBAR */
+main .terminal::-webkit-scrollbar {
+  width: 18px;
+}
+
+main .terminal::-webkit-scrollbar-track {
+  background-color: rgb(19, 19, 19);
+}
+
+main .terminal::-webkit-scrollbar-thumb {
+  background-color: #fff;
+  border-radius: 50px;
+  border: 6px solid rgb(19, 19, 19);
+}
