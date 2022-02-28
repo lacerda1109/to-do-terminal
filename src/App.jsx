@@ -80,12 +80,6 @@ function App() {
                     setCodeInput("");
                 }
             }
-
-            // Scroll para o fim do terminal
-            // setInterval(() => {
-            //     let terminalHeight = terminal.current.scrollHeight
-            //     terminal.current.scrollTo(0, terminalHeight)
-            // }, 50)
         }
 
         // LIMPEZA DO DISPLAY DO TERMINAL AO PRESSIONAR CTRL + M
@@ -117,6 +111,16 @@ function App() {
             setCommandIndex(commandIndex + 1);
         }
     }
+
+    /*
+    Sempre que o arrDisplay for alterado (no caso
+    sempre que a tecla enter for pressionada), executa
+    esta ação de rolar o scroll do terminar para o fim.
+    */
+    useEffect(() => {
+        let terminalHeight = terminal.current.scrollHeight;
+        terminal.current.scrollTo(0, terminalHeight);
+    }, [arrDisplay]);
 
     // Altera o texto do terminal para códigos escritos anteriormente
     useEffect(() => {
