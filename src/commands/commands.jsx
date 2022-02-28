@@ -379,3 +379,21 @@ export const list = (codeInput) => {
         );
     }
 };
+
+export const wipe = () => {
+    let todos = JSON.parse(localStorage.getItem("todos"));
+    let newToDos = todos.todos.filter((el, i) => {
+        return el.status === false
+    })
+    localStorage.setItem("todos", JSON.stringify({
+        totalCount: newToDos.length,
+        todos: newToDos
+    }))
+
+    return (
+        <p>
+            Todas as tarefas marcadas como concluídas foram removidas. Digite
+            'tdt list' para ver.
+        </p>
+    );
+};
